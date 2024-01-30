@@ -1,0 +1,40 @@
+nav {
+  background: -webkit-linear-gradient(top left, #667eea 0%, #764ba2 100%);
+  background: -moz-linear-gradient(top left, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(to bottom right, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+nav li {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background: -webkit-linear-gradient(top left, #f953c6 0%, #b91d73 100%);
+  background: -moz-linear-gradient(top left, #f953c6 0%, #b91d73 100%);
+  background: linear-gradient(to bottom right, #f953c6 0%, #b91d73 100%);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+nav li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav li a:hover {
+  color: #ccc;
+}
+
+main {
+  padding: 20px;
+}

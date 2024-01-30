@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	<meta charset="UTF-8">
+	<title>Car Rental Application</title>
+</head>
+<style>
+	header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+	.logo {
+	  height: 100px;
+	  width: 100px;
+	}
+
+	h1 {
+	  font-size: 24px;
+	  margin-bottom: 20px;
+	  color: red;
+	}
+
+	nav {
+	  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(123,123,130,1) 35%, rgba(0,212,255,1) 100%);
+	  text-align: center;
+	  font-weight: bold;
+	  padding: 1px;
+	}
+
+	nav ul {
+	  list-style: none;
+	  margin: 0;
+	  padding: 0;
+	}
+
+	nav li {
+	  display: inline-block;
+	  margin: 10px;
+	  padding: 10px;
+	  border-radius: 5px;
+	  padding: 10px;
+	}
+
+	nav li a {
+	  color: white;
+	  text-decoration: none;
+	}
+
+	nav li a:hover {
+	  color: black;
+	}
+
+	main {
+	  padding: 50px;
+	}
+
+	footer {
+	  text-align: center;
+	  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(123,123,130,1) 35%, rgba(0,212,255,1) 100%);
+	  padding: 5px;
+	}
+
+	footer p{
+		color: white;
+		font-weight: bold;
+	}
+
+	@media (max-width: 768px) {
+	  nav {
+		width: 100%;
+		text-align: center;
+	  }
+
+	  nav li {
+		display: block;
+		width: 100%;
+	  }
+	}
+</style>
+<body>
+	<header>
+        <img src="{% static 'img/car_logo.jpg' %}" alt="Car Logo" class="logo">
+        <h1>Ram Rental Pro<h1>
+    </header><br>
+		<nav>
+			<ul>
+				<li><b><a href="{% url 'add_cars' %}">Add Cars</a></li>
+				<li><a href="{% url 'car_list' %}">Car List</a></li>
+				<li><a href="{% url 'view_bookings' %}">View Bookings</a></li>
+				<li><a href="{% url 'view_feedback' %}">View Feedback</a></li>
+				<li><a href="{% url 'logout' %}">Logout</a></b></li>
+			</ul>
+		</nav>	
+	<main>
+		{% block content %}
+		{% endblock %}
+	</main>
+	
+	<footer>
+		<p>&copy; 2023 Car Rental Application</p>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{% extends 'house.html' %}
+{% load static %}
+
+{% block content %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/add_cars.css' %}">
+        <title>Car Rental Application</title>
+    </head>
+  <div class="form-container">
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      
+      <label for="model">Model:</label>
+      <input type="text" id="model" name="model" required>
+      
+      <label for="year">Year:</label>
+      <input type="number" id="year" name="year" required>
+      
+      <label for="color">Color:</label>
+      <input type="text" id="color" name="color" required>
+      
+      <label for="price">Price:</label>
+      <input type="number" step="0.01" id="price" name="price" required>
+
+      <label for="image">Car Image:</label>
+      <input type="file" id="image" name="image" accept="image/*"><br><br><br>
+
+      <input type="submit" value="Submit">
+    </form>
+	<script>
+        {% for message in messages %}
+            alert("{{ message }}");
+        {% endfor %}
+    </script>
+  </div>
+</body>
+</html>
+{% endblock %}

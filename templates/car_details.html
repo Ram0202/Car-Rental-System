@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+	.car-details {
+		display: flex;
+		justify-content: space-between;
+		max-width: 500px;
+		margin: 20px auto;
+		padding: 20px;
+		background-color: #fff;
+		box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+		border-radius: 10px;
+		overflow: hidden;
+	}
+
+	.image-container {
+		flex: 1;
+		overflow: hidden;
+		border-radius: 10px;
+	}
+
+	.car-image {
+		max-width: 100%;
+		height: auto;
+		border-radius: 10px;
+		transition: transform 0.3s;
+	}
+
+	.car-image:hover {
+		transform: scale(1.1);
+	}
+
+	.details-container {
+		padding: 0 20px;
+	}
+
+	h2 {
+		color: #ff5e62;
+		margin-bottom: 10px;
+	}
+
+	form {
+		margin-top: 40px;
+	}
+
+	.btn-book-now, .btn-back {
+		display: inline-block;
+		padding: 12px 20px;
+		text-decoration: none;
+		color: #fff;
+		background-color: #ff5e62;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: background-color 0.3s;
+	}
+
+	.btn-back {
+		margin-top: 20px;
+		margin-left: 500px;
+	}
+
+	.btn-book-now:hover, .btn-back:hover {
+		background-color: #e04144;
+	}
+</style>
+
+<div class="car-details">
+    <div class="image-container">
+        <img class="car-image" src="{{ car.image.url }}">
+    </div>
+    <div class="details-container">
+        <h2>Car Details</h2>
+        <p>Model: {{ car.model }}</p>
+        <p>Color: {{ car.color }}</p>
+        <p>Price: {{ car.price }}</p>
+            {% csrf_token %}
+			<a href="/bookings/{{ car.id }}/{{ user.id }}/" class="btn-book-now">Book Now</a>
+        </form>
+    </div>
+</div><br>
+<a href="{% url 'available_cars' %}"><button class="btn-back">Back to Available Cars</button></a>
+{% endblock %}

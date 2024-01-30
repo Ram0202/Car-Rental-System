@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Car Rental Application</title>
+</head>
+<style>
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.logo {
+  height: 100px;
+  width: 100px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: black;
+}
+
+  nav {
+    background: #333;
+    text-align: center;
+    font-weight: bold;
+    padding: 1px;
+  }
+
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav li {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+  }
+
+  nav li a {
+    color: white;
+    text-decoration: none;
+	padding: 8px;
+    margin: 3px 0;
+  }
+
+  nav li a:hover {
+    background-color: #555;
+	border-radius: 5px;
+    color: white;
+  }
+
+main {
+  padding: 60px;
+}
+
+footer {
+  text-align: center;
+  background: #333;
+  padding: 5px;
+}
+
+footer p{
+	color: white;
+	font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  nav {
+    width: 100%;
+    text-align: center;
+  }
+
+  nav li {
+    display: block;
+    width: 100%;
+  }
+}
+</style>
+<body>
+    <header>
+        <img src="{% static 'img/car_logo.jpg' %}" alt="Car Logo" class="logo">
+        <h1>Ram Rental Pro<h1>
+    </header><br>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'available_cars' %}">Available Cars</a></li>
+            <li><a href="{% url 'feedback' user.id %}">Feedback Us</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2023 Car Rental Application</p>
+    </footer>
+</body>
+</html>

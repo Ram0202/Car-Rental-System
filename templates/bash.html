@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <title>Car Rental Application</title>
+  <link rel="stylesheet" href="{% static 'css/bash.css' %}">
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="{% url 'admin_login' %}">Admin Login</a></li>
+      <li><a href="{% url 'user_login' %}">User Login</a></li>
+    </ul>
+  </nav><br><br><br><br><br>
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+</body>
+</html>
