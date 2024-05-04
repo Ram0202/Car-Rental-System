@@ -1,0 +1,70 @@
+{% extends 'house.html' %}
+{% load static %}
+{% block content %}
+<html>
+<head>
+    <title>Car Rental Application</title>
+</head>
+<style>
+	.container {
+		width: 80%;
+		margin: 0 auto;
+	}
+
+	.car-table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+
+	.car-table th {
+		background-color: #f2f2f2;
+		border: 1px solid #dddddd;
+		text-align: left;
+		padding: 8px;
+	}
+
+	.car-table td {
+		border: 1px solid #dddddd;
+		text-align: left;
+		padding: 8px;
+	}
+
+	.car-table tr:hover {
+		background-color: #e2e2e2;
+	}
+
+	.car-table td[colspan="5"] {
+		text-align: center;
+		padding: 10px;
+	}
+</style>
+<body>
+    <div class="container mt-4">
+        <table class="car-table table table-hover" id="example">
+            <thead>
+                <tr>
+                    <th>Sr.No</th>
+                    <th>Model</th>
+                    <th>Color</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for car in cars %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ car.model }}</td>
+                    <td>{{ car.color }}</td>
+                    <td>{{ car.price }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">No cars found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+{% endblock %}

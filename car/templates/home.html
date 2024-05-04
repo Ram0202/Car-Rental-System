@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    .services {
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+
+    .services-container {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .service-item {
+        flex: 0 0 100%;
+        text-align: center;
+    }
+
+    .services img {
+        width: 50%;
+        max-height: 350px;
+        height: auto;
+    }
+
+    .slider-btn {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 24px;
+        color: white;
+        background-color: #333;
+        border: none;
+        padding: 10px;
+        z-index: 2;
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+
+    .slider-btn:hover,
+    .slider-btn:active {
+        background-color: #555;
+    }
+
+    .about-us,
+    .contact-us {
+        margin-bottom: 20px;
+		text-align: center;
+    }
+
+    .about-us p,
+    .contact-us p {
+        margin-bottom: 10px;
+        color: grey;
+		font-size: 17px;
+		font-family: 'Playfair Display', serif;
+    }
+
+    address {
+        margin: 0;
+    }
+
+    #map-container {
+        margin-top: 20px;
+        overflow: hidden;
+    }
+
+    iframe {
+        width: 50%;
+        height: 300px;
+        border: none;
+    }
+
+    h3 {
+        color: #007BFF;
+    }
+</style>
+
+<div class="services">
+    <div class="services-container">
+        <div class="service-item">
+            <img src="{% static 'img/cars 001.jpg' %}" alt="Service 1">
+            <h3>Car Rentals</h3>
+        </div>
+
+        <div class="service-item">
+            <img src="{% static 'img/cars 002.jpg' %}" alt="Service 2">
+            <h3>Affordable Pricing</h3>
+        </div>
+
+        <div class="service-item">
+            <img src="{% static 'img/cars 003.jpg' %}" alt="Service 3">
+            <h3>Customer Satisfaction</h3>
+        </div>
+
+        <div class="service-item">
+            <img src="{% static 'img/cars 004.jpg' %}" alt="Service 4">
+            <h3>Long-Term Rentals</h3>
+        </div>
+
+        <div class="service-item">
+            <img src="{% static 'img/cars 005.jpg' %}" alt="Service 5">
+            <h3>24/7 Customer Support</h3>
+        </div>
+    </div>
+
+    <button class="slider-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+    <button class="slider-btn next" onclick="changeSlide(1)">&#10095;</button>
+</div>
+
+<script>
+    let currentIndex = 0;
+    const intervalTime = 5000;
+
+    function changeSlide(direction) {
+        const servicesContainer = document.querySelector('.services-container');
+        const serviceItems = document.querySelectorAll('.service-item');
+
+        currentIndex += direction;
+
+        if (currentIndex < 0) {
+            currentIndex = serviceItems.length - 1;
+        } else if (currentIndex >= serviceItems.length) {
+            currentIndex = 0;
+        }
+
+        const translateValue = -currentIndex * 100 + '%';
+        servicesContainer.style.transform = 'translateX(' + translateValue + ')';
+    }
+
+    setInterval(() => {
+        changeSlide(1);
+    }, intervalTime);
+</script>
+
+<section class="about-us">
+    <hr>
+    <h3>About Us</h3>
+    <hr><br>
+    <p>We are dedicated to providing reliable and affordable car rental solutions. Learn more about our company and mission.</p>
+    
+    <p>At Car Rentals, we strive to exceed our customer's expectations by offering a diverse fleet of well-maintained vehicles suitable for various needs. Whether you're planning a family vacation, a business trip, or just need a reliable car for daily commuting, we've got you covered.</p>
+
+    <p>Our team is committed to providing excellent customer service, ensuring a seamless rental experience from start to finish. We prioritize safety, comfort, and satisfaction, making us the preferred choice for individuals and businesses seeking quality car rental services.</p>
+
+    <p>Discover the convenience of renting a car with us and experience the freedom to explore your destination at your own pace. We value your trust and look forward to serving you with the best in the car rental industry.</p>
+</section><br>
+
+<section class="contact-us">
+    <hr>
+    <h3>Contact Us</h3>
+    <hr><br>
+    <p>For inquiries and reservations, please feel free to contact us :</p><br>
+    <address>
+        <b>Email:</b> Ram@carrentals.com<br><br>
+        <b>Phone:</b> 9876543200
+    </address><br>
+    
+    <div id="map-container">
+    <iframe 
+        width="600" 
+        height="450" 
+        frameborder="0" 
+        style="border:0" 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.134787314338!2d77.33670131437961!3d11.11219499208372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba9b9d1479689cf%3A0x3db83b607f1afaa2!2sTiruppur%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1643969389267!5m2!1sen!2sin" 
+        allowfullscreen>
+    </iframe>
+	</div>
+
+</section>
+
+{% endblock %}

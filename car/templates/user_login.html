@@ -1,0 +1,21 @@
+{% extends 'bash.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/user.css' %}">
+	<title>User Login</title>
+</head>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" placeholder="Username" name="username" required><br><br>
+        <input type="password" placeholder="Password" name="password" required><br><br>
+        <input type="submit" value="Log in">
+		<a href="/signup"><input type="button" value="Sign up"></a></input>
+    </form>
+	<script>
+        {% for message in messages %}
+            alert("{{ message }}");
+        {% endfor %}
+    </script>
+{% endblock %}

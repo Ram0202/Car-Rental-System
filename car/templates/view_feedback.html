@@ -1,0 +1,66 @@
+{% extends 'house.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #f2f2f2;
+}
+
+.table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.no-feedbacks {
+    margin-top: 20px;
+    text-align: center;
+    color: #666;
+}
+</style>
+
+<body>
+    <div class="container mt-4">
+        {% if feedback %}
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Sr.No</th>
+                        <th>Name</th>
+                        <th>Phone No</th>
+                        <th>Feedback</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for feedback in feedback %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ feedback.user.user.username }}</td>
+                            <td>{{ feedback.user.phone }}</td>
+                            <td>{{ feedback.feedback }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="no-bookings">No feedbacks found.</p>
+        {% endif %}
+    </div>
+</body>
+{% endblock %}

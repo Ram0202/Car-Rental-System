@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<html>
+<head>
+    <title>Car Rental Application</title>
+    <style>
+        .car-details-container {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          margin-top: 20px;
+        }
+
+        .car-details {
+          background-color: #fff;
+          border: 2px solid #ddd;
+          border-radius: 10px;
+          margin: 10px;
+          padding: 20px;
+          width: 300px;
+          text-align: center;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .car-image {
+          width: 100%;
+          height: 150px;
+          object-fit: cover;
+          border: 2px solid #ddd;
+          border-radius: 5px;
+          margin-bottom: 15px;
+        }
+
+        h2 {
+          color: #ff7f50;
+          font-size: 24px;
+          margin-bottom: 10px;
+        }
+
+        .no-cars {
+          text-align: center;
+          color: #ff7f50;
+          font-weight: bold;
+        }
+
+        .btn {
+          display: inline-block;
+          background-color: #ff7f50;
+          color: #ffffff;
+          padding: 8px 16px;
+          text-decoration: none;
+          border-radius: 5px;
+          margin-top: 15px;
+          transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+          background-color: #e6603b;
+        }
+
+        .navigation-buttons {
+          margin-top: 20px;
+          text-align: center;
+        }
+
+        .navigation-buttons button {
+          margin-right: 10px;
+          background-color: #4a4e4d;
+          color: #ffffff;
+          padding: 8px 16px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+        }
+
+        .navigation-buttons button:hover {
+          background-color: #333;
+        }
+    </style>
+</head>
+<body>
+<div class="car-details-container">
+    {% for car in cars %}
+        <div class="car-details">
+            <img class="car-image" src="{{ car.image.url }}" alt="{{ car.model }} image">
+            <div>
+                <h2>Car {{ forloop.counter }}</h2>
+                <p>Model: {{ car.model }}</p>
+                <p>Color: {{ car.color }}</p>
+                <p>Price: {{ car.price }}</p>
+                <a href="/car_details/{{car.id}}/" class="btn">View Booking</a>
+            </div>
+        </div>
+    {% empty %}
+        <p class="no-cars">No cars found.</p>
+    {% endfor %}
+</div>
+
+<div class="navigation-buttons">
+    <button id="prevButton">Previous</button>
+    <button id="nextButton">Next</button>
+</div>
+
+<script>
+    var slideIndex = 0;
+    var carDetails = document.getElementsByClassName("car-details");
+    var prevButton = document.getElementById("prevButton");
+    var nextButton = document.getElementById("nextButton");
+
+    showCarDetails();
+
+    function showCarDetails() {
+        for (var i = 0; i < carDetails.length; i++) {
+            carDetails[i].style.display = "none";
+        }
+
+        carDetails[slideIndex].style.display = "block";
+    }
+
+    prevButton.addEventListener("click", function () {
+        slideIndex--;
+        if (slideIndex < 0) {
+            slideIndex = carDetails.length - 1;
+        }
+
+        showCarDetails();
+    });
+
+    nextButton.addEventListener("click", function () {
+        slideIndex++;
+        if (slideIndex >= carDetails.length) {
+            slideIndex = 0;
+        }
+
+        showCarDetails();
+    });
+</script>
+<script>
+  {% for message in messages %}
+      alert("{{ message }}");
+  {% endfor %}
+</script>
+</body>
+</html>
+{% endblock %}

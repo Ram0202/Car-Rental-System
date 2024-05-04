@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <style>
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        .car-info {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+<body>
+    <div class="container">
+        <h2>Book a Car</h2><br>
+
+        {% if car %}
+            <div class="car-info">
+                <p>You are booking a {{ car.model }} car.</p>
+            </div>
+        {% endif %}
+
+        <form method="post" action="{% url 'bookings' car.id user.id %}">
+            {% csrf_token %}
+
+            <input type="hidden" name="car_id" value="{{ car.id }}">
+
+            {% if user %}
+                <input type="hidden" name="user_id" value="{{ user.id }}">
+
+                <div class="form-group">
+                    <label for="name">Your name</label>
+                    <input type="text" name="name" id="name" class="form-control" value="{{ user.user.username }}" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Your email</label>
+                    <input type="email" name="email" id="email" class="form-control" value="{{ user.email }}" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone_number">Your Phone - No</label>
+                    <input type="number" name="phone_number" id="phone_number" class="form-control" value="{{ user.phone }}" readonly>
+                </div>
+            {% endif %}
+
+            <div class="form-group">
+                <label for="address">Your address</label>
+                <input type="text" name="address" id="address" class="form-control" required>
+            </div>
+
+            <button type="submit" value="submit" class="btn btn-primary">Book</button>
+        </form>
+        <script>
+            {% for message in messages %}
+                alert("{{ message }}");
+            {% endfor %}
+        </script>
+    </div>
+</body>
+{% endblock %}
