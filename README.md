@@ -23,3 +23,5 @@ You can also view the car bookings and list of cars posted on the site, as well 
 Use signup to create a new user.
 Log in using those details.
 After logging in, you can book the available cars posted on the website and also leave feedback about the car rental service.
+
+---> Add media(file name) file in this to save the car images.
