@@ -12,6 +12,8 @@ After downloading the file, Run the python comments.
 2. Python manage.py migrate
 3. Python manage.py runserver
 
+After copy the localhost address and paste it in your browser.
+
 # Admin :
 
 Create a Superuser or use this (Username : ram, Password : 123).
